@@ -1,6 +1,3 @@
-#include <unistd.h>
-#include <term.h>
-#include <cstdio>
 #include <chrono>
 #include <thread>
 #include <iostream>
