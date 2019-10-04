@@ -4,7 +4,7 @@ Compile:
 g++ conway.cpp -o conway
 
 Usage:
-	./conway input_file
+	./conway input_file (time between ticks in ms)
 
 File format:
 	First line: height and width separated by space
