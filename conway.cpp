@@ -43,6 +43,7 @@ int main(int argc, char* argv[]) {
 	while(true) {
 		std::string nextScreen;
 		for(int i = 0; i < height; i++) {
+			nextScreen += "\033[1;33;47m";
 			for(int j = 0; j < width; j++) {
 				if(gameboard[i][j]) {
 					nextScreen +="\u25A0"; //Square character
@@ -50,7 +51,7 @@ int main(int argc, char* argv[]) {
 					nextScreen +=" ";	//Override with space if nothing should be displayed
 				}
 			}
-			nextScreen += "\n";
+			nextScreen += "\033[0m\n";
 		}
 		std::cout << nextScreen << std::flush;
 
