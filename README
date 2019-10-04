@@ -1,1 +1,19 @@
 Conway's game of life
+
+Compile:
+g++ conway.cpp -o conway
+
+Usage:
+	./conway input_file
+
+File format:
+	First line: height and width separated by space
+	1 represents alive cell, 0 represents dead
+
+Example of file:
+5 10
+1010101010
+1111111111
+0000000000
+1111111111
+1010101011
