@@ -25,7 +25,7 @@ int main(int argc, char* argv[]) {
 		exit(2);
 	}
 	std::string tmp;
-	infile >> tmp;
+	infile >> tmp; // Get height and width from input file  TODO: Error check values
 	int height = std::stoi(tmp);
 	infile >> tmp;
 	int width = std::stoi(tmp);
@@ -35,7 +35,8 @@ int main(int argc, char* argv[]) {
 	for(int i = 0; i < height; i++) {
 		std::getline(infile, tmp);
 		for(int j = 0; j < width; j++) {
-			gameboard[i][j] = (tmp[j] == '1' ? true : false);
+			gameboard[i][j] = (tmp[j] == '1' ? true : false);	//Check if each character in file is a 1, set cell to alive if it is
+										//TODO: Check for extra garbage data and give an error if found						
 		}
 	}		
 	//Run game loop
@@ -51,7 +52,7 @@ int main(int argc, char* argv[]) {
 			}
 			nextScreen += "\n";
 		}
-		std::cout << nextScreen << std::endl;
+		std::cout << nextScreen << std::flush;
 		std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 		
 		//Count number of neighbors and determine whether the cell will be alive or dead in the next iteration
@@ -80,7 +81,7 @@ int main(int argc, char* argv[]) {
 		
 		//std::cin >> tmp;
 
-		for(int i = 0; i <= height; i++) {
+		for(int i = 0; i < height; i++) {
 			std::cout << "\x1b[A"; //ANSI go up one line
 			for(int j = 0; j <= width; j++) {
 				std::cout << " "; //Override line with spaces to clear for next display tick
