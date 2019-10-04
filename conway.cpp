@@ -8,12 +8,12 @@
 #include <istream>
 #include <fstream>
 
-int countNeighbors(bool *gameboard, int, int, int, int);
+int countNeighbors(bool *gameboard, int, int, int, int); //Counts the number of the 8 adjacent cells that contain the value `true`
 
 int main(int argc, char* argv[]) {
 
-	if(argc != 2) {
-		std::cout << "USAGE: ./conway input_file" << std::endl;
+	if(argc < 2) {
+		std::cout << "USAGE: ./conway input_file (tickspeed in ms)" << std::endl;
 		exit(1);
 	}
 
@@ -47,13 +47,18 @@ int main(int argc, char* argv[]) {
 				if(gameboard[i][j]) {
 					nextScreen +="\u25A0"; //Square character
 				} else {
-					nextScreen +=" ";
+					nextScreen +=" ";	//Override with space if nothing should be displayed
 				}
 			}
 			nextScreen += "\n";
 		}
 		std::cout << nextScreen << std::flush;
-		std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+
+		int millisecondsToWait = 150;
+		if(argc == 3) {
+			millisecondsToWait = std::stoi(argv[2]);
+		}
+		std::this_thread::sleep_for(std::chrono::milliseconds(millisecondsToWait));
 		
 		//Count number of neighbors and determine whether the cell will be alive or dead in the next iteration
 		int neighborCount[height][width];
